@@ -68,9 +68,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form action="">
                 <div class="modal-body">
                     <!-- Form fields for adding a supplier -->
-                    <form>
+                    <form action="{{ route('')}}" method="POST" >
+                        @csrf
+                        @method('POST')
                         <div class="form-group">
                             <label for="supplierName">Name</label>
                             <input type="text" class="form-control" id="supplierName" placeholder="Enter supplier name">
@@ -91,8 +94,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Supplier</button>
+                    <button type="submit" class="btn btn-primary">Save Supplier</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

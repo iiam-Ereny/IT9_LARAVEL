@@ -6,17 +6,26 @@ Route::get('/', function () {
     return view('login');
 })->name('login'); // Ensure login page loads first
 
-Route::post('/dashboard', function () { 
-    return view('dashboard');
-})->name('dashboard'); // POST request for login form submission
+// Route::post('/dashboard', function () { 
+//     return view('dashboard');
+// })->name('dashboard'); // POST request for login form submission
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard'); // Protect dashboard
+// Route::get('/dashboard', function () {
+//     return view('profile.dashboard');
+// })->middleware('auth')->name('dashboard'); // Protect dashboard
 
 Route::get('/inventory', function () {
     return view('inventory');
 })->name('inventory');
+
+Route::post('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+
+})->name('dashboard');
 
 Route::get('/sales', function () {
     return view('sales');

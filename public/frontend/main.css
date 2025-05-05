@@ -75,15 +75,15 @@ body {
 }
 
 .main-content {
-    margin-left: 150px; /* Match sidebar width */
+    margin-left: 200px; /* Match sidebar width */
     padding: 20px;
-    width: calc(100% - 190px); /* Adjust content width */
+    width: calc(100% - 350px); /* Adjust content width */
     transition: margin-left 0.5s ease;
 }
 
 .sidebar:hover ~ .main-content {
-    margin-left: 240px; /* Match sidebar width */
-    width: calc(100% - 190px);
+    margin-left: 160px; /* Match sidebar width */
+    width: calc(100% - 200px);
 }
 
 .dashboard-section {

@@ -20,6 +20,7 @@
         <h3>Admin Login</h3>
         <form action="{{ url('dashboard') }}" method="POST">
             @csrf
+            @method('POST')
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">LOGIN</button>
