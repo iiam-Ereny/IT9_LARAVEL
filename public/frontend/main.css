@@ -233,7 +233,7 @@ h2.font-weight-bold {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Hover effect for the button */
+
 .btn-primary:hover {
     background-color: #0056b3 !important; /* Darker blue on hover */
     border-color: #0056b3 !important;

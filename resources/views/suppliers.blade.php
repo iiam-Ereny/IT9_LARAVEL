@@ -48,9 +48,24 @@
                             </tr>
                         </thead>
                         <tbody id="suppliers_div">
-                            <tr>
-                                <td colspan="6" class="text-center text-muted">No data available</td>
-                            </tr>
+                            @forelse ($suppliers as $supplier)
+                                <tr>
+                                    <td>{{ $supplier->id }}</td>
+                                    <td>{{ $supplier->name }}</td>
+                                    <td>{{ $supplier->email }}</td>
+                                    <td>{{ $supplier->contact_number }}</td>
+                                    <td>{{ $supplier->address }}</td>
+                                    <td>
+                                        <!-- Placeholder buttons -->
+                                        <button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">No data available</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -68,34 +83,32 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="">
-                <div class="modal-body">
-                    <!-- Form fields for adding a supplier -->
-                    <form action="{{ route('')}}" method="POST" >
-                        @csrf
-                        @method('POST')
+                <!-- Form for adding supplier -->
+                <form action="{{ route('suppliers.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <!-- Form fields for adding a supplier -->
                         <div class="form-group">
                             <label for="supplierName">Name</label>
-                            <input type="text" class="form-control" id="supplierName" placeholder="Enter supplier name">
+                            <input type="text" class="form-control" id="supplierName" name="name" placeholder="Enter supplier name">
                         </div>
                         <div class="form-group">
                             <label for="supplierEmail">Email</label>
-                            <input type="email" class="form-control" id="supplierEmail" placeholder="Enter supplier email">
+                            <input type="email" class="form-control" id="supplierEmail" name="email" placeholder="Enter supplier email">
                         </div>
                         <div class="form-group">
                             <label for="supplierContact">Contact Number</label>
-                            <input type="text" class="form-control" id="supplierContact" placeholder="Enter contact number">
+                            <input type="text" class="form-control" id="supplierContact" name="contact_number" placeholder="Enter contact number">
                         </div>
                         <div class="form-group">
                             <label for="supplierAddress">Address</label>
-                            <textarea class="form-control" id="supplierAddress" rows="3" placeholder="Enter supplier address"></textarea>
+                            <textarea class="form-control" id="supplierAddress" name="address" rows="3" placeholder="Enter supplier address"></textarea>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Supplier</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Supplier</button>
+                    </div>
                 </form>
             </div>
         </div>

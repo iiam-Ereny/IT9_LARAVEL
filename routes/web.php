@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\MedicineController;
+use App\Models\Supplier;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 Route::get('/', function () {
     return view('login');
@@ -13,10 +19,6 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('profile.dashboard');
 // })->middleware('auth')->name('dashboard'); // Protect dashboard
-
-Route::get('/inventory', function () {
-    return view('inventory');
-})->name('inventory');
 
 Route::post('/dashboard', function () {
     return view('dashboard');
@@ -31,9 +33,11 @@ Route::get('/sales', function () {
     return view('sales');
 })->name('sales');
 
-Route::get('/suppliers', function () {
-    return view('suppliers');
-})->name('suppliers');
+Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers');
+Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers.store');
+
+Route::get('/inventory', [MedicineController::class, 'index'])->name('medicine.index');
+Route::post('/inventory', [MedicineController::class, 'store'])->name('medicine.store');
 
 Route::get('/reports', function () {
     return view('reports');
@@ -46,3 +50,5 @@ Route::get('/settings', function () {
 Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
+
+

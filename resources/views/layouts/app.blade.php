@@ -17,7 +17,7 @@
             </div>
             <ul class="sidebar-links">
                 <li><a href="{{ route('dashboard') }}"><span class="material-symbols-outlined">dashboard</span>Dashboard</a></li>
-                <li><a href="{{ route('inventory') }}"><span class="material-symbols-outlined">inventory</span>Inventory</a></li>
+                <li><a href="{{ route('medicine.index') }}"><span class="material-symbols-outlined">inventory</span>Inventory</a></li>
                 <li><a href="{{ route('sales') }}"><span class="material-symbols-outlined">real_estate_agent</span>Sales</a></li>
                 <li><a href="{{ route('suppliers') }}"><span class="material-symbols-outlined">forklift</span>Suppliers</a></li>
                 <li><a href="{{ route('reports') }}"><span class="material-symbols-outlined">lab_profile</span>Reports</a></li>
