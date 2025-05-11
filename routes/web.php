@@ -3,6 +3,7 @@
 use App\Http\Controllers\MedicineController;
 use App\Models\Supplier;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,7 +27,6 @@ Route::post('/dashboard', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-
 })->name('dashboard');
 
 Route::get('/sales', function () {
@@ -39,9 +39,13 @@ Route::post('/suppliers', [SupplierController::class, 'store'])->name('suppliers
 Route::get('/inventory', [MedicineController::class, 'index'])->name('medicine.index');
 Route::post('/inventory', [MedicineController::class, 'store'])->name('medicine.store');
 
-Route::get('/reports', function () {
-    return view('reports');
-})->name('reports');
+// I comment lang sa nako ni para walay error (Jeriel)
+// Route::get('/reports', function () {
+//     return view('reports');
+// })->name('reports');
+
+// Gi change nako ani para ma connect sa ReportController (Jeriel)
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
 Route::get('/settings', function () {
     return view('settings');
@@ -50,5 +54,3 @@ Route::get('/settings', function () {
 Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
-
-

@@ -20,7 +20,10 @@
                 <li><a href="{{ route('medicine.index') }}"><span class="material-symbols-outlined">inventory</span>Inventory</a></li>
                 <li><a href="{{ route('sales') }}"><span class="material-symbols-outlined">real_estate_agent</span>Sales</a></li>
                 <li><a href="{{ route('suppliers') }}"><span class="material-symbols-outlined">forklift</span>Suppliers</a></li>
-                <li><a href="{{ route('reports') }}"><span class="material-symbols-outlined">lab_profile</span>Reports</a></li>
+                
+                {{-- Gi change nako ang route name sa reports (Jeriel) --}}
+                <li><a href="{{ route('reports.index') }}"><span class="material-symbols-outlined">lab_profile</span>Reports</a></li> 
+                
                 <li><a href="{{ route('settings') }}"><span class="material-symbols-outlined">settings</span>Settings</a></li>
                 <li><a href="{{ route('logout') }}"><span class="material-symbols-outlined">logout</span>Log-Out</a></li>
             </ul>
