@@ -9,7 +9,7 @@
 <body>
 
     <div class="bg-images">
-    <img src="{{ asset('img/design.png') }}" class="left-image">
+        <img src="{{ asset('img/design.png') }}" class="left-image">
         <img src="{{ asset('img/design1.png') }}" class="right-image">
     </div>
 
@@ -18,6 +18,18 @@
         <h1>Medicines Monitoring System</h1>
         <hr>
         <h3>Admin Login</h3>
+
+        <!-- Display any validation errors here -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('login.post') }}" method="POST">
             @csrf
             <input type="email" name="email" placeholder="Email" required>

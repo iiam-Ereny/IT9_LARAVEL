@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-     public function index()
+    // Dashboard page with statistics
+    public function index()
     {
         $totalSuppliers = Supplier::count();
         $totalMedicines = Medicine::count();
@@ -19,19 +20,31 @@ class DashboardController extends Controller
         return view('dashboard', compact('totalSuppliers', 'totalMedicines', 'outOfStock', 'expired'));
     }
 
-     public function login(Request $request)
+    // Hardcoded login method
+    public function login(Request $request)
     {
-        // For now, just allow any username and password
-        $request->session()->put('user', $request->email); // Store the username in the session
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        // Redirect to the dashboard
-        return redirect()->route('dashboard');
+        $adminEmail = 'admin@example.com';
+        $adminPassword = 'password123';
+
+        if ($request->email === $adminEmail && $request->password === $adminPassword) {
+            $request->session()->put('admin_logged_in', true);
+            return redirect()->route('dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'Invalid credentials.',
+        ]);
     }
-    // Handle logout functionality
+
+    // Logout method — THIS is what you're asking about
     public function logout(Request $request)
     {
-        $request->session()->forget('user');
+        $request->session()->forget('admin_logged_in');
         return redirect('/login');
     }
-
 }

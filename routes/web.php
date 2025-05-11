@@ -15,22 +15,24 @@ use Illuminate\Support\Carbon;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login');  // Show login form
 })->name('login');
+
+
 
 // Post request for login action
 Route::post('/login', [DashboardController::class, 'login'])->name('login.post');
 
 // Protected dashboard route (check if user is set in session)
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth'])
+
     ->name('dashboard');
 
 // Logout route
 Route::post('/logout', [DashboardController::class, 'logout'])->name('logout');
 // Sales routes
-Route::prefix('sales')->middleware(['auth'])->group(function () {
+Route::prefix('sales')->group(function () {
     Route::get('/', [SalesController::class, 'index'])->name('sales.index');
     Route::post('/', [SalesController::class, 'store'])->name('sales.store');
     Route::delete('/{id}', [SalesController::class, 'destroy'])->name('sales.destroy');
@@ -39,7 +41,7 @@ Route::prefix('sales')->middleware(['auth'])->group(function () {
 });
 
 // Supplier routes
-Route::prefix('suppliers')->middleware(['auth'])->group(function () {
+Route::prefix('suppliers')->group(function () {
     Route::get('/', [SupplierController::class, 'index'])->name('suppliers');
     Route::post('/', [SupplierController::class, 'store'])->name('suppliers.store');
     Route::put('/{id}', [SupplierController::class, 'update'])->name('suppliers.update');
@@ -48,7 +50,7 @@ Route::prefix('suppliers')->middleware(['auth'])->group(function () {
 });
 
 // Medicine/Inventory routes
-Route::prefix('medicine')->middleware(['auth'])->group(function () {
+Route::prefix('medicine')->group(function () {
     Route::get('/inventory', [MedicineController::class, 'index'])->name('medicine.index');
     Route::post('/inventory', [MedicineController::class, 'store'])->name('medicine.store');
     Route::get('/{id}/edit', [MedicineController::class, 'edit'])->name('medicine.edit');
@@ -56,14 +58,10 @@ Route::prefix('medicine')->middleware(['auth'])->group(function () {
     Route::delete('/{id}', [MedicineController::class, 'destroy'])->name('medicine.destroy');
 });
 
-// Reports and settings
-Route::middleware(['auth'])->group(function () {
-    Route::get('/reports', function () {
-        return view('reports');
-    })->name('reports');
+Route::get('/reports', function () {
+    return view('reports');
+})->name('reports');
 
-    Route::get('/settings', function () {
-        return view('settings');
-    })->name('settings');
-});
-
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');
