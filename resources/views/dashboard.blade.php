@@ -18,17 +18,7 @@
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" style="padding: 10px">
         <div class="dashboard-stats">
           <a class="text-dark text-decoration-none" href="#">
-            <span class="h4">0</span>
-            <span class="h6"><i class="fa fa-play fa-rotate-270 text-warning"></i></span>
-            <div class="small font-weight-bold">Total Customer</div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" style="padding: 10px">
-        <div class="dashboard-stats">
-          <a class="text-dark text-decoration-none" href="#">
-            <span class="h4">0</span>
+            <span class="h4">{{ $totalSuppliers }}</span>
             <span class="h6"><i class="fa fa-play fa-rotate-270 text-warning"></i></span>
             <div class="small font-weight-bold">Total Supplier</div>
           </a>
@@ -38,7 +28,7 @@
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" style="padding: 10px">
         <div class="dashboard-stats">
           <a class="text-dark text-decoration-none" href="#">
-            <span class="h4">0</span>
+            <span class="h4">{{ $totalMedicines }}</span>
             <span class="h6"><i class="fa fa-play fa-rotate-270 text-warning"></i></span>
             <div class="small font-weight-bold">Total Medicine</div>
           </a>
@@ -48,7 +38,7 @@
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" style="padding: 10px">
         <div class="dashboard-stats">
           <a class="text-dark text-decoration-none" href="#">
-            <span class="h4">0</span>
+            <span class="h4">{{ $outOfStock }}</span>
             <span class="h6"><i class="fa fa-play fa-rotate-270 text-warning"></i></span>
             <div class="small font-weight-bold">Out of Stock</div>
           </a>
@@ -58,7 +48,7 @@
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" style="padding: 10px">
         <div class="dashboard-stats">
           <a class="text-dark text-decoration-none" href="#">
-            <span class="h4">0</span>
+            <span class="h4">{{ $expired }}</span> 
             <span class="h6"><i class="fa fa-play fa-rotate-270 text-warning"></i></span>
             <div class="small font-weight-bold">Expired</div>
           </a>

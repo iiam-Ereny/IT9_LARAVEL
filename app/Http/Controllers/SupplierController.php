@@ -14,6 +14,7 @@ class SupplierController extends Controller
         $suppliers = Supplier::all();
         return view('suppliers', compact('suppliers'));
     }
+
     public function store(Request $request)
     {
         $request->validate( [
@@ -26,6 +27,32 @@ class SupplierController extends Controller
         Supplier::create($request->all());
         return redirect()->route('suppliers');
     }
+
+
+   public function edit($id)
+{
+    $supplier = Supplier::findOrFail($id);
+    return view('suppliers.edit', compact('supplier'));
+}
+
+public function update(Request $request, $id)
+{
+    $supplier = Supplier::findOrFail($id);
+    $supplier->update($request->all());
+    return redirect()->route('suppliers');
+}
+
+public function destroy($id)
+{
+   
+    $supplier = Supplier::findOrFail($id);
+    
+    
+    $supplier->delete();
+
+    
+    return redirect()->route('suppliers')->with('success', 'Supplier deleted successfully.');
+}
 
 
 }

@@ -26,13 +26,13 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    background: #30AEDE;
+    background: #298fb8;
     padding: 25px 20px;
     transition: all 0.5s ease;
 }
 
 .sidebar:hover {
-    width: 240px; /* Adjust width for better alignment */
+    width: 180px; /* Adjust width for better alignment */
 }
 
 .sidebar-header {
@@ -198,14 +198,14 @@ h2.font-weight-bold {
 }
 
 .btn-danger {
-    background-color: #ff0000;
-    border-color: #ff0000;
+    background-color: #e45050;
+    border-color: #e45050;
     color: #fff;
 }
 
 .btn-warning {
-    background-color: #ffcc00;
-    border-color: #ffcc00;
+    background-color: #ddbd3d;
+    border-color: #ddbd3d;
     color: #000;
 }
 

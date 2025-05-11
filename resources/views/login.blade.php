@@ -18,13 +18,12 @@
         <h1>Medicines Monitoring System</h1>
         <hr>
         <h3>Admin Login</h3>
-        <form action="{{ url('dashboard') }}" method="POST">
+        <form action="{{ route('login.post') }}" method="POST">
             @csrf
-            @method('POST')
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">LOGIN</button>
-        </form>        
+            <button type="submit">Login</button>
+        </form>   
     </div>
 </body>
 </html>

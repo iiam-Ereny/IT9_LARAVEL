@@ -68,9 +68,20 @@
                                         <td>{{ $medicine->quantity }}</td>
                                         <td>₱{{ number_format($medicine->rate, 2) }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                            <a href="{{ route('medicine.edit', $medicine->id) }}" class="btn btn-sm btn-warning">
+    <i class="fas fa-edit"></i> Edit
+</a>
+
+                                        
+                                        <form action="{{ route('medicine.destroy', $medicine->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this medicine?');">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-sm btn-danger">
+        <i class="fas fa-trash"></i> Delete
+    </button>
+</form>
                                         </td>
+
                                     </tr>
                                 @endforeach
                             @endif
@@ -89,7 +100,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="addMedicineModalLabel">Add New Medicine</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span> 
                     </button>
                 </div>
 
