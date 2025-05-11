@@ -46,6 +46,7 @@ Route::post('/inventory', [MedicineController::class, 'store'])->name('medicine.
 
 // Gi change nako ani para ma connect sa ReportController (Jeriel)
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/reports/download', [ReportController::class, 'downloadPDF'])->name('reports.download');
 
 Route::get('/settings', function () {
     return view('settings');
