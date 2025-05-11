@@ -11,13 +11,17 @@ class ReportController extends Controller
     //
     public function index()
     {
-        return view('reports');
+        $medicines = Medicine::with('supplier')->orderBy('medicine_name')->get();
+        $reportDate = now()->format('Y-m-d H:i:s');
+        return view('reports', compact('medicines', 'reportDate'));
     }
 
     public function downloadPDF()
     {
         $medicines = Medicine::with('supplier')->orderBy('medicine_name')->get();
-        $pdf = PDF::loadView('medicine_stock_report.pdf', compact('medicines'));
+        $reportDate = now()->format('Y-m-d H:i:s');
+        $pdf = PDF::loadView('medicine_stock_report.pdf', compact('medicines', 'reportDate'));
+        $pdf->setPaper('a4', 'landscape');
         return $pdf->download('medicine_stock_report.pdf');
     }
 }

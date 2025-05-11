@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Medicine Stock Report</title>
+    <title>Medicine Inventory Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,6 +10,10 @@
         h1 {
             text-align: center;
             color: #333;
+        }
+        p {
+            text-align: center;
+            color: #555;
         }
         table {
             width: 100%;
@@ -30,7 +34,8 @@
     </style>
 </head>
 <body>
-    <h1>Medicine Stock Report</h1>
+    <h1>Medicine Monitoring Report</h1>
+    <p>Generated on: {{ $reportDate }}</p>
     <table>
         <thead>
             <tr>
