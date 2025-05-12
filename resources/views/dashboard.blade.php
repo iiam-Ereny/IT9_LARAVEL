@@ -86,11 +86,11 @@
             <tbody>
               <tr>
                 <th>Total Sales</th>
-                <th class="text-success">Rs. 0</th>
+                <th class="text-success"></th>
               </tr>
               <tr>
                 <th>Total Purchase</th>
-                <th class="text-danger">Rs. 0</th>
+                <th class="text-danger"></th>
               </tr>
             </tbody>
           </table>

@@ -2,43 +2,52 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Medicine;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class MedicineController extends Controller
 {
-    public function index()
-{
-    $medicines = Medicine::with('supplier')->get();
-    $suppliers = Supplier::all(); // add this
+    // Display medicine list with optional search filters
+    public function index(Request $request)
+    {
+        $query = Medicine::with('supplier');
 
-    return view('inventory', compact('medicines', 'suppliers'));
-}
+        if ($request->filled('medicine_name')) {
+            $query->where('medicine_name', 'like', '%' . $request->medicine_name . '%');
+        }
 
+        if ($request->filled('generic_name')) {
+            $query->where('generic_name', 'like', '%' . $request->generic_name . '%');
+        }
+
+        if ($request->filled('supplier_name')) {
+            $query->whereHas('supplier', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->supplier_name . '%');
+            });
+        }
+
+        $medicines = $query->get();
+        $suppliers = Supplier::all();
+
+        return view('inventory', compact('medicines', 'suppliers'));
+    }
 
     // Store a new medicine inventory record
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'medicine_name' => 'required|string|max:255',
-        'packing' => 'required|string|max:255',
-        'generic_name' => 'required|string|max:255',
-        'expiry_date' => 'required|date',
-        'supplier_id' => 'required|exists:suppliers,id',
-        'quantity' => 'required|integer|min:0',
-        'rate' => 'required|numeric|min:0',
-    ]);
+    {
+        $validated = $request->validate([
+            'medicine_name' => 'required|string|max:255',
+            'packing' => 'required|string|max:255',
+            'generic_name' => 'required|string|max:255',
+            'expiry_date' => 'required|date',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'quantity' => 'required|integer|min:0',
+            'rate' => 'required|numeric|min:0',
+        ]);
 
-    // Create the new medicine record
-    Medicine::create($validated);
+        Medicine::create($validated);
 
-    // Fetch all medicines again to pass to the view
-    $medicines = Medicine::with('supplier')->get();
-
-    // Redirect back with success and pass the medicines
-    return view('inventory', compact('medicines'))->with('success', 'Medicine added successfully!');
+        return redirect()->route('medicines.index')->with('success', 'Medicine added successfully!');
+    }
 }
- }
-

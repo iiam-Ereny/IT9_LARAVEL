@@ -279,13 +279,23 @@ hr[style*="border-top: 2px solid #02b6ff"] {
     vertical-align: middle; /* Center-align content vertically */
 }
 
+/* Remove the blue color from even rows */
+/* Set even rows to a slightly light gray */
 .table tbody tr:nth-child(even) {
-    background-color: #30AEDE; /* Striped rows */
+    background-color: #f2f2f2; /* Light gray color for even rows */
 }
 
-.table tbody tr:hover {
-    background-color: #f1f1f1; /* Hover effect */
+/* Set odd rows to a slightly darker gray */
+.table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Slightly darker gray for odd rows */
 }
+
+/* Hover effect - make rows darker on hover */
+.table tbody tr:hover {
+    background-color: #b0b0b0; /* Darker gray on hover */
+}
+
+
 
 .table thead th {
     background-color: #333 !important;
@@ -373,3 +383,19 @@ hr[style*="border-top: 2px solid #02b6ff"] {
     border-color: #5a6268;
 }
 
+#addMedicineModal select[name="supplier_id"] {
+    border: 1px solid #dee2e6;
+    padding: 10px 15px;    
+    border-radius: 6px;  
+    font-size: 1rem;    
+    background-color: #fff; 
+    color: #212529;     
+    width: 100%;              
+    transition: border-color 0.3s ease;
+}
+
+#addMedicineModal select[name="supplier_id"]:focus {
+    border-color: #0d6efd;      
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* Bootstrap-like focus ring */
+}

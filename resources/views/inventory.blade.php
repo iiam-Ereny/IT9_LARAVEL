@@ -18,18 +18,23 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12 form-group form-inline">
-                <label class="font-weight-bold">Search : </label>
-                <input type="text" class="form-control" id="by_name" placeholder="By Medicine Name">
-                <input type="text" class="form-control" id="by_generic_name" placeholder="By Generic Name">
-                <input type="text" class="form-control" id="by_suppliers_name" placeholder="By Supplier Name">
-                <button class="btn btn-danger font-weight-bold">Out of Stock</button>
-                <button class="btn btn-warning font-weight-bold">Expired</button>
-                <button class="btn btn-success font-weight-bold"><i class="fas fa-sync"></i></button>
-                <button class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#addMedicineModal">
-                    <i class="fas fa-plus"></i> Add Stock
-                </button>
-            </div>
+            <div class="col-md-12">
+    <form method="GET" action="{{ route('medicines.index') }}" class="form-inline mb-3">
+        <label class="font-weight-bold mr-2">Search:</label>
+        <input type="text" name="medicine_name" class="form-control mr-2" placeholder="By Medicine Name" value="{{ request('medicine_name') }}">
+        <input type="text" name="generic_name" class="form-control mr-2" placeholder="By Generic Name" value="{{ request('generic_name') }}">
+        <input type="text" name="supplier_name" class="form-control mr-2" placeholder="By Supplier Name" value="{{ request('supplier_name') }}">
+        <button type="submit" class="btn btn-primary mr-2">Search</button>
+        <a href="{{ route('medicines.index') }}" class="btn btn-secondary mr-2">Reset</a>
+        <button type="button" class="btn btn-danger font-weight-bold mr-2">Out of Stock</button>
+        <button type="button" class="btn btn-warning font-weight-bold mr-2">Expired</button>
+        <button type="button" class="btn btn-success font-weight-bold mr-2"><i class="fas fa-sync"></i></button>
+        <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#addMedicineModal">
+            <i class="fas fa-plus"></i> Add Stock
+        </button>
+    </form>
+</div>
+
 
             <div class="col col-md-12">
                 <hr class="col-md-12" style="padding: 0px; border-top: 2px solid #02b6ff;">
