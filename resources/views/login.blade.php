@@ -9,7 +9,7 @@
 <body>
 
     <div class="bg-images">
-    <img src="{{ asset('img/design.png') }}" class="left-image">
+        <img src="{{ asset('img/design.png') }}" class="left-image">
         <img src="{{ asset('img/design1.png') }}" class="right-image">
     </div>
 
@@ -18,10 +18,9 @@
         <h1>Medicines Monitoring System</h1>
         <hr>
         <h3>Admin Login</h3>
-        <form action="{{ url('dashboard') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
-            @method('POST')
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="email" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">LOGIN</button>
         </form>        

@@ -26,11 +26,8 @@
         <input type="text" name="supplier_name" class="form-control mr-2" placeholder="By Supplier Name" value="{{ request('supplier_name') }}">
         <button type="submit" class="btn btn-primary mr-2">Search</button>
         <a href="{{ route('medicines.index') }}" class="btn btn-secondary mr-2">Reset</a>
-        <button type="button" class="btn btn-danger font-weight-bold mr-2">Out of Stock</button>
-        <button type="button" class="btn btn-warning font-weight-bold mr-2">Expired</button>
-        <button type="button" class="btn btn-success font-weight-bold mr-2"><i class="fas fa-sync"></i></button>
         <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal" data-target="#addMedicineModal">
-            <i class="fas fa-plus"></i> Add Stock
+            <i class="fas fa-plus"></i> Add Medicine
         </button>
     </form>
 </div>
@@ -51,7 +48,7 @@
                                 <th style="width: 14%;">Generic Name</th>
                                 <th style="width: 8%;">Ex. Date (dd/mm/yy)</th>
                                 <th style="width: 15%;">Supplier</th>
-                                <th style="width: 7%;">Qty.</th>
+                                <th style="width: 7%;">Stocks</th>
                                 <th style="width: 8%;">Rate</th>
                                 <th style="width: 10%;">Action</th>
                             </tr>
@@ -73,9 +70,15 @@
                                         <td>{{ $medicine->quantity }}</td>
                                         <td>₱{{ number_format($medicine->rate, 2) }}</td>
                                         <td>
-                                            <button class="btn btn-sm btn-warning">Edit</button>
-                                            <button class="btn btn-sm btn-danger">Delete</button>
-                                        </td>
+                                       
+                                        <a href="{{route('medicine.edit', $medicine->id )}}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('medicine.destroy', $medicine->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
+                               
+                                    </td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -129,8 +132,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity">
+                            <label for="quantity">Stocks</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter stock">
                         </div>
                         <div class="form-group">
                             <label for="rate">Rate</label>

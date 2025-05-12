@@ -48,6 +48,41 @@ class MedicineController extends Controller
 
         Medicine::create($validated);
 
-        return redirect()->route('medicines.index')->with('success', 'Medicine added successfully!');
+        return redirect()->route('medicine.index')->with('success', 'Medicine added successfully!');
     }
+
+ public function edit($id)
+{
+    $medicine = Medicine::findOrFail($id);
+    return view('   edit', compact('medicine'));
+}
+
+public function destroy($id)
+{
+    $medicine = Medicine::findOrFail($id);
+    $medicine->delete();
+
+    return redirect()->route('medicine.index')->with('success', 'Medicine deleted successfully!');
+
+}
+
+
+public function update(Request $request, $id)
+{
+    $medicine = Medicine::findOrFail($id);
+
+    $validated = $request->validate([
+        'medicine_name' => 'required|string|max:255',
+        'packing' => 'required|string|max:255',
+        'generic_name' => 'required|string|max:255',
+        'expiry_date' => 'required|date',
+        'supplier_id' => 'required|exists:suppliers,id',
+        'quantity' => 'required|integer|min:0',
+        'rate' => 'required|numeric|min:0',
+    ]);
+
+    $medicine->update($validated);
+
+    return redirect()->route('medicine.index')->with('success', 'Medicine updated successfully!');
+}
 }
